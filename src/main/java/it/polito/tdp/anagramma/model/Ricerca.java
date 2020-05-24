@@ -35,8 +35,12 @@ public class Ricerca {
 	 * @param livello livello della ricorsione, sempre uguale a parziale.length()
 	 * @param disponibili insieme delle lettere non ancora utilizzate
 	 */
+	
+	
+	
+	                                                  // list perchè può contenere dei duplicati
 	private void cerca( String parziale, int livello, List<Character> disponibili) {
-		if(disponibili.size()==0) { // livello==parola.length()
+		if(disponibili.size()==0) { // livello==parola.length()     lettere che posso ancora usare
 			// caso terminale
 			
 			// if(parziale è nel dizionario)
@@ -50,10 +54,17 @@ public class Ricerca {
 		for(Character ch: disponibili) {
 			String tentativo = parziale + ch ;
 			
-//			if(nel dizionario esistono delle parole che iniziano con 'tentativo'?)
+		/**
+		 * se non modifico la soluzione parziale non ho più bisogno di fare backtracking ovvero quando torno
+		 * alla sol parziale	
+		 */
+			
+//			if(nel dizionario esistono delle parole che iniziano con 'tentativo'?) 
 			
 			List<Character> rimanenti = new ArrayList<>(disponibili) ;
 			rimanenti.remove(ch) ;
+			
+			// non posso modificare la lista mente la sto iterando quindi ne creo un'altra
 			
 			cerca( tentativo, livello+1, rimanenti) ;
 		}
